@@ -9,6 +9,8 @@ import AuthLayout from "./components/AuthLayout.jsx";
 import LoginPage from "./LoginPage.jsx";
 import ProtectedLayout from "./components/ProtectedLayout.jsx";
 import HomePage from "./HomePage.jsx";
+import Logout from "./Logout.jsx";
+import StaffManagementPage from "./StaffManagementPage.jsx";
 
 
 
@@ -27,6 +29,8 @@ function App() {
             children: [
                 { path: "", element: <Navigate to="/home" /> },
                 { path: "home", element: <HomePage /> },
+                { path: "staff_management", element: <StaffManagementPage /> },
+                { path: "/auth/logout", element: <Logout /> },
 
             ],
         },

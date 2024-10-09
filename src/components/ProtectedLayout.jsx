@@ -12,7 +12,7 @@ const ProtectedRoute = ({props}) => {
 
     let currentPath = useLocation().pathname;
     if (currentPath === "/auth/logout") {
-        currentPath = "/dashboard";
+        currentPath = "/home";
     }
     currentPath = encodeURIComponent(currentPath);
 

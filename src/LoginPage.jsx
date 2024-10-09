@@ -1,6 +1,6 @@
 import React from "react";
 import { toast } from "react-hot-toast";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
@@ -40,9 +40,9 @@ const LoginPage = () => {
             } = await login(data).unwrap();
 
             dispatch(setCredentials({ accessToken, refreshToken}));
-            dispatch(setUser({ user_id, username }));
+            dispatch(setUser({ user: { user_id, username }}));
             const redirect = new URLSearchParams(location.search).get("redirect");
-            navigate(decodeURIComponent(redirect || "/dashboard"));
+            navigate(decodeURIComponent(redirect || "/"));
         } catch (err) {
             if (parseInt(err.status) !== err.status) {
                 toast.error(("network_error"));
@@ -56,10 +56,10 @@ const LoginPage = () => {
     return (
         <form  className="mt-4"  onSubmit={handleSubmit(handleLogin)}>
             <div className="form-group mb-4">
-                <TextInput name={"username"} label={"Username"} register={register}/>
+                <TextInput name={"username"} label={"Username"} register={register} errors={errors.username}/>
             </div>
             <div className="form-group mb-4">
-                <PasswordInput name={"password"} label={"Password"} register={register} />
+                <PasswordInput name={"password"} label={"Password"} register={register} errors={errors.password} />
             </div>
             <button type="submit" className="btn btn-primary shadow px-5">Log in</button>
         </form>

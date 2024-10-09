@@ -1,13 +1,15 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 const HeaderComponent = () => {
     return (
         <header className="header">
-            <nav className="navbar navbar-expand-lg px-4 py-2 bg-white shadow"><a href="#"
-                                                                                  className="sidebar-toggler text-gray-500 mr-4 mr-lg-5 lead"><i
-                className="fas fa-align-left"></i></a><a href="index.html"
-                                                         className="navbar-brand font-weight-bold text-uppercase text-base">Staff
-                Application</a>
+            <nav className="navbar navbar-expand-lg px-4 py-2 bg-white shadow">
+                <a href="#" className="sidebar-toggler text-gray-500 mr-4 mr-lg-5 lead">
+                    <i className="fas fa-align-left"></i></a>
+                     <Link to="/" className="navbar-brand font-weight-bold text-uppercase text-base">
+                         Staff Application
+                     </Link>
                 <ul className="ml-auto d-flex align-items-center list-unstyled mb-0">
                     <li className="nav-item dropdown ml-auto"><a id="userInfo" href="http://example.com"
                                                                  data-toggle="dropdown" aria-haspopup="true"
