@@ -5,12 +5,15 @@ export const staffSlice = apiSlice.injectEndpoints({
         // Query for getting all staff members
         getStaff: builder.query({
             query: () => ({
-                url: '/staff/retrieve',  // Assuming the endpoint for all staff is `/staff/`
+                url: '/staff/retrieve/',  // Assuming the endpoint for all staff is `/staff/`
                 method: 'GET',
             }),
-            providesTags: (result = [], error, arg) =>
+            providesTags: (result) =>
                 result
-                    ? [...result.map(({ id }) => ({ type: 'Staff', id })), { type: 'Staff', id: 'LIST' }]
+                    ? [
+                        { type: 'Staff', id: 'LIST' },
+                        ...result.results.map(({ employeeNumber }) => ({ type: 'Staff', id: employeeNumber })),
+                    ]
                     : [{ type: 'Staff', id: 'LIST' }],
         }),
 
@@ -32,6 +35,15 @@ export const staffSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: (result, error, { employeeNumber }) => [{ type: 'Staff', id: employeeNumber }],
         }),
+
+        addStaffMember: builder.mutation({
+            query: (data) => ({
+                url: '/staff/register/',  // Assuming the endpoint for adding a new staff member is `/staff/create/`
+                method: 'POST',
+                body: data,
+            }),
+            invalidatesTags: [{ type: 'Staff', id: 'LIST' }],  // Invalidate the list to refetch after adding a new member
+        }),
     }),
 });
 
@@ -39,4 +51,5 @@ export const {
     useGetStaffQuery,
     useGetStaffMemberQuery,
     useEditStaffMemberMutation,
+    useAddStaffMemberMutation,
 } = staffSlice;

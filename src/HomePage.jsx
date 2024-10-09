@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 const HomePage = () => {
     return (
@@ -13,7 +14,9 @@ const HomePage = () => {
                             <p className="text-gray">Welcome to the Staff Application.
                                 This application is designed to enable staff registration and update
                             </p>
-                            <button className={"btn btn-primary"}>Staff Management</button>
+                            <Link to={"/staff_management"}>
+                                <button className={"btn btn-primary"}>Staff Management</button>
+                            </Link>
                         </div>
                     </div>
                 </div>

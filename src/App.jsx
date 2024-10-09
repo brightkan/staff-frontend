@@ -11,6 +11,9 @@ import ProtectedLayout from "./components/ProtectedLayout.jsx";
 import HomePage from "./HomePage.jsx";
 import Logout from "./Logout.jsx";
 import StaffManagementPage from "./StaffManagementPage.jsx";
+import RegisterStaffPage from "./RegisterStaffPage.jsx";
+import UpdateStaffMemberPage from "./UpdateStaffMemberPage.jsx";
+import ProfilePage from "./ProfilePage.jsx";
 
 
 
@@ -30,6 +33,9 @@ function App() {
                 { path: "", element: <Navigate to="/home" /> },
                 { path: "home", element: <HomePage /> },
                 { path: "staff_management", element: <StaffManagementPage /> },
+                {path: "register_staff", element: <RegisterStaffPage/>},
+                {path: "update_staff_member/:id", element: <UpdateStaffMemberPage/>},
+                {path: "profile/:id", element: <ProfilePage/>},
                 { path: "/auth/logout", element: <Logout /> },
 
             ],
