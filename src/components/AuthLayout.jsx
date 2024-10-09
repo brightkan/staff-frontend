@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import {selectAccessToken} from "../slices/authSlice.js";
 
+
 const AuthLayout = () => {
     const accessToken = useSelector(selectAccessToken);
 
@@ -24,9 +25,8 @@ const AuthLayout = () => {
                     </div>
                 </div>
             </div>
-            <p className="mt-5 mb-0 text-gray-400 text-center">Design by Bright Kanyange</p>
-
         </div>
-            )};
+    )
+};
 
 export default AuthLayout;
