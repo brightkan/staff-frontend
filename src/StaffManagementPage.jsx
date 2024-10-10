@@ -59,7 +59,7 @@ const StaffManagementPage = () => {
 
 
 
-                            {staff && staff?.count && (
+                            {staff?.count > 10 && staff?.count && (
                                 <Pagination
                                     currentPage={pageNumber}
                                     totalItems={staff?.count}

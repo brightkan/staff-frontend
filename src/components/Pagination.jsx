@@ -3,35 +3,35 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 function Pagination({ currentPage, itemsPerPage, totalItems, onPageChange }) {
+    if (totalItems === 0) {
+        return (
+            <div className="row">
+                <div className="col-sm-12">
+                    <div className="dataTables_info">No entries to show</div>
+                </div>
+            </div>
+        );
+    }
+
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
         pageNumbers.push(i);
     }
     const isActive = (number) => currentPage === number;
 
+    // Calculate the range of items shown on the current page
+    const startItemIndex = (currentPage - 1) * itemsPerPage + 1;
+    const endItemIndex =
+        currentPage * itemsPerPage > totalItems ? totalItems : currentPage * itemsPerPage;
+
     return totalItems > itemsPerPage ? (
         <div className="row">
             <div className="col-sm-12 col-md-5 d-flex align-items-center">
                 <div className="dataTables_info">
                     <span className="me-2">Showing</span>
-                    {currentPage === 1 ? (
-                        <span className="me-2">1</span>
-                    ) : (
-                        <span className="me-2">
-              {(currentPage - 1) * itemsPerPage ?? 10 + 1}
-            </span>
-                    )}
+                    <span className="me-2">{startItemIndex}</span>
                     <span className="me-2">to</span>
-                    {currentPage === 1 ? (
-                        <span className="me-2">{itemsPerPage ?? 10}</span>
-                    ) : (
-                        <span className="me-2">
-              {currentPage * (itemsPerPage === 10 ? 10 : itemsPerPage) >
-              totalItems
-                  ? totalItems
-                  : currentPage * (itemsPerPage === 10 ? 10 : itemsPerPage)}
-            </span>
-                    )}
+                    <span className="me-2">{endItemIndex}</span>
                     <span className="me-2">of</span>
                     <span className="me-2">{totalItems}</span>
                     <span className="me-2">entries</span>
